@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/chuc_nang_chinh">
+        <menu>
+            <item
+                android:id="@+id/nav_home"
+                android:icon="@drawable/ic_home"
+                android:title="@string/trang_chu" />
+            <item
+                android:id="@+id/nav_lichhoctheotuan"
+                android:icon="@drawable/ic_event"
+                android:title="@string/lich_hoc_theo_tuan" />
+            <item
+                android:id="@+id/nav_lichhoc"
+                android:icon="@drawable/ic_event_note"
+                android:title="@string/lich_hoc" />
+            <item
+                android:id="@+id/nav_lichthi"
+                android:icon="@drawable/ic_new_releases"
+                android:title="@string/lich_thi" />
+            <item
+                android:id="@+id/nav_ketquahoctap"
+                android:icon="@drawable/ic_school"
+                android:title="@string/ket_qua_hoc_tap" />
+            <item
+                android:id="@+id/_nav_diemdanh"
+                android:icon="@drawable/ic_pan"
+                android:title="@string/diem_danh" />
+            <item
+                android:id="@+id/nav_congno"
+                android:icon="@drawable/ic_attach_money"
+                android:title="@string/cong_no" />
+        </menu>
+    </item>
+
+    <item android:title="@string/thong_tin">
+        <menu>
+            <item
+                android:id="@+id/nav_chuandaura"
+                android:icon="@drawable/ic_done"
+                android:title="@string/chuan_dau_ra" />
+            <item
+                android:id="@+id/nav_tiethoc"
+                android:icon="@drawable/ic_watch"
+                android:title="@string/quy_dinh_phan_tiet_hoc" />
+            <item
+                android:id="@+id/nav_vitriphonghoc"
+                android:icon="@drawable/ic_place"
+                android:title="@string/vi_tri" />
+            <item
+                android:id="@+id/nav_donghocphi"
+                android:icon="@drawable/ic_monetization"
+                android:title="@string/dong_hoc_phi" />
+        </menu>
+    </item>
+
+    <item android:title="@string/chuc_nang_khac">
+        <menu>
+            <item
+                android:id="@+id/nav_caidat"
+                android:icon="@drawable/ic_setting"
+                android:title="@string/cai_dat" />
+            <item
+                android:id="@+id/nav_gioithieu"
+                android:icon="@drawable/ic_about"
+                android:title="@string/gioi_thieu" />
+        </menu>
+    </item>
+
+</menu>
