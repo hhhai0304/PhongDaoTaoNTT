@@ -45,9 +45,15 @@
     <string name="no_internet">Không thể kết nối Internet, hãy thử lại sau!</string>
     <string name="yes">Có</string>
     <string name="no">Không</string>
-    <string name="incorrect_mssv">Mã sinh viên phải đúng 10 ký tự</string>
+
 
     <string name="title_thong_bao_update">Phiên bản 7.0</string>
     <string name="thong_bao_update">Chào bạn, mình là Hải - người phát triển ứng dụng này ^^\n\nCảm ơn bạn đã luôn đồng hành cùng ứng dụng Phòng Đào Tạo NTT!\n\nMình muốn thông báo đến bạn là bắt đầu từ phiên bản này, mình sẽ thêm một banner quảng cáo nhỏ ở cuối màn hình. Lý do là mình muốn tìm thêm động lực để phát triển ứng dụng tiếp cũng như thông qua đó kiếm thêm chút thu nhập để uống cafe :D Hy vọng nó không làm phiền bạn quá nhiều và vẫn mang lại trải nghiệm tốt cho bạn khi sử dụng.\n\nNếu cảm thấy ứng dụng hữu ích, bạn có thể click vào banner quảng cáo để ủng hộ giúp mình hoặc đánh giá 5 sao cho Phòng Đào Tạo NTT trên Google Play nha!\n\nNếu bạn có góp ý cũng như gặp lỗi trong quá trình sử dụng, đừng ngần ngại liên hệ với mình qua email hhhai0304@gmail.com\n\nCảm ơn bạn và chúc bạn luôn đạt thành tích cao trong học tập cũng như trong công việc :3</string>
     <string name="seen">Đã xem</string>
+
+    <string name="login_student_id_hint">MÃ SINH VIÊN</string>
+    <string name="login_dialog_title">Chỉ một bước nữa thôi &#x1F606;</string>
+    <string name="login_dialog_message">Hãy click vào nút XEM ĐIỂM để hoàn tất bước đăng nhập nhé!</string>
+    <string name="login_incorrect_student_id">Mã sinh viên phải là số và có đúng 10 ký tự &#x1F605;</string>
+    <string name="login_successful">Đăng nhập thành công &#x1F389;</string>
 </resources>

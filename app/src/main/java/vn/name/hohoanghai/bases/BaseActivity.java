@@ -1,17 +1,18 @@
 package vn.name.hohoanghai.bases;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import org.greenrobot.eventbus.EventBus;
+import java.util.Objects;
 
 import butterknife.ButterKnife;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
     protected abstract int layoutId();
-    protected abstract void initViews();
+    protected abstract void initData();
     protected abstract void initEvents();
 
     @Override
@@ -19,19 +20,16 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(layoutId());
         ButterKnife.bind(this);
-        initViews();
+        initData();
         initEvents();
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        EventBus.getDefault().register(this);
+    protected void hideActionBar() {
+        Objects.requireNonNull(getSupportActionBar()).hide();
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        EventBus.getDefault().unregister(this);
+    protected void appear(Class target) {
+        startActivity(new Intent(this, target));
+        finish();
     }
 }

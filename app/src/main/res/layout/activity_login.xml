@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="@color/colorPrimary"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context="vn.name.hohoanghai.activities.LoginActivity">
+
+    <EditText
+        android:id="@+id/edt_student_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_round_white"
+        android:drawablePadding="@dimen/default_dimen"
+        android:drawableStart="@drawable/ic_person_blue"
+        android:hint="@string/login_student_id_hint"
+        android:inputType="numberSigned"
+        android:minEms="10"
+        android:padding="@dimen/default_dimen"
+        android:textColor="@color/colorPrimaryDark"
+        android:textColorHint="@color/colorPrimaryDark" />
+
+    <WebView
+        android:id="@+id/web_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+</LinearLayout>

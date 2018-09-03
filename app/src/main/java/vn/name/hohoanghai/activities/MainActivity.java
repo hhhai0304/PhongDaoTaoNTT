@@ -1,7 +1,6 @@
 package vn.name.hohoanghai.activities;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Build;
@@ -13,27 +12,20 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebChromeClient;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ProgressBar;
-import android.widget.Toast;
-
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import vn.name.hohoanghai.bases.BaseActivity;
-import vn.name.hohoanghai.models.RequestResult;
 import vn.name.hohoanghai.pdtntt.R;
 import vn.name.hohoanghai.utils.DownloadUtils;
-import vn.name.hohoanghai.utils.RequestUtils;
 import vn.name.hohoanghai.utils.Settings;
+import vn.name.hohoanghai.utils.WebViewUtils;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -47,31 +39,28 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     WebView webView;
     @BindView(R.id.swipe_container)
     SwipeRefreshLayout swipeContainer;
-    @BindView(R.id.progress_bar)
-    ProgressBar progressBar;
 
     private String studentId;
+    private String studentHash;
 
     @Override
     protected int layoutId() {
         return R.layout.activity_main;
     }
 
-    @SuppressLint("SetJavaScriptEnabled")
-    protected void initViews() {
+    protected void initData() {
         studentId = Settings.getStudentId();
+        studentHash = Settings.getStudentHash();
 
         setupDrawer();
+        setupWebView();
 
-        WebSettings settings = webView.getSettings();
-        settings.setJavaScriptEnabled(true);
-        settings.setSupportZoom(true);
-        settings.setBuiltInZoomControls(true);
-        settings.setDisplayZoomControls(false);
-        settings.setUseWideViewPort(true);
+        swipeContainer.setRefreshing(true);
+        webView.loadUrl(Settings.URL_HOME);
+    }
 
-        webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
-        webView.setWebViewClient(new WebViewClient() {
+    private void setupWebView() {
+        WebViewClient webViewClient = new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
                 webView.loadUrl("javascript:(function(){document.getElementById('ctl00_ucRight1_txtMaSV').value='" + studentId + "';})()");
@@ -101,28 +90,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                     }
                 }
             }
-        });
+        };
 
-        webView.setWebChromeClient(new WebChromeClient() {
-            public void onProgressChanged(WebView view, int progress) {
-                progressBar.setProgress(progress);
-                if (progress == 100) {
-                    progressBar.setVisibility(ProgressBar.GONE);
-                }
-            }
-        });
-
-        webView.setInitialScale(100);
-        webView.loadUrl(Settings.URL_HOME);
+        WebViewUtils.setWebViewSettings(webView, webViewClient);
     }
 
     protected void initEvents() {
-        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                webView.reload();
-            }
-        });
+        swipeContainer.setOnRefreshListener(() -> webView.reload());
     }
 
     private void setupDrawer() {
@@ -146,25 +120,51 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
+        String url = null;
 
         switch (id) {
             case R.id.nav_home:
-                new RequestUtils().sendRequest(Settings.URL_HOME);
+                url = Settings.URL_HOME;
                 break;
+            case R.id.nav_week_schedule:
+                url = Settings.URL_WEEK_SCHEDULE + studentHash;
+                break;
+            case R.id.nav_schedule:
+                url = Settings.URL_SCHEDULE + studentHash;
+                break;
+            case R.id.nav_examination:
+                url = Settings.URL_EXAMINATION + studentHash;
+                break;
+            case R.id.nav_result:
+                url = Settings.URL_RESULT + studentHash;
+                break;
+            case R.id.nav_attendance:
+                url = Settings.URL_ATTENDANCE + studentHash;
+                break;
+            case R.id.nav_dept:
+                url = Settings.URL_DEBT + studentHash;
+                break;
+            case R.id.nav_outcome_standard:
+                url = Settings.URL_OUTCOME_STANDARD;
+                break;
+            case R.id.nav_lesson:
+                break;
+            case R.id.nav_location:
+                break;
+            case R.id.nav_tuition:
+                break;
+            case R.id.nav_setting:
+                break;
+            case R.id.nav_about:
+                break;
+        }
+
+        if (!TextUtils.isEmpty(url)) {
+            swipeContainer.setRefreshing(true);
+            webView.loadUrl(url);
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onReceiveResult(RequestResult result) {
-        if (result.isSuccess()) {
-            String body = result.getBody();
-//            body = body.concat("<script>onload=function(){document.querySelectorAll('div.col-left').style.display='none';}</script>");
-            webView.loadDataWithBaseURL("", body, "text/html", "UTF-8", null);
-        } else {
-            Toast.makeText(this, "Có lỗi gì đó", Toast.LENGTH_SHORT).show();
-        }
     }
 }

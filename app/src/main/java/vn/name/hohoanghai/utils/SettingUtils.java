@@ -35,6 +35,14 @@ public class SettingUtils {
         editor = null;
     }
 
+    public void clear(String... keys) {
+        startEdit();
+        for (String key : keys) {
+           editor.remove(key);
+        }
+        endEdit();
+    }
+
     public void put(String key, Object value) {
         startEdit();
         if (value instanceof String) {

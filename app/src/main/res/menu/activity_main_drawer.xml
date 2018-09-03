@@ -8,27 +8,27 @@
                 android:icon="@drawable/ic_home"
                 android:title="@string/trang_chu" />
             <item
-                android:id="@+id/nav_lichhoctheotuan"
+                android:id="@+id/nav_week_schedule"
                 android:icon="@drawable/ic_event"
                 android:title="@string/lich_hoc_theo_tuan" />
             <item
-                android:id="@+id/nav_lichhoc"
+                android:id="@+id/nav_schedule"
                 android:icon="@drawable/ic_event_note"
                 android:title="@string/lich_hoc" />
             <item
-                android:id="@+id/nav_lichthi"
+                android:id="@+id/nav_examination"
                 android:icon="@drawable/ic_new_releases"
                 android:title="@string/lich_thi" />
             <item
-                android:id="@+id/nav_ketquahoctap"
+                android:id="@+id/nav_result"
                 android:icon="@drawable/ic_school"
                 android:title="@string/ket_qua_hoc_tap" />
             <item
-                android:id="@+id/_nav_diemdanh"
+                android:id="@+id/nav_attendance"
                 android:icon="@drawable/ic_pan"
                 android:title="@string/diem_danh" />
             <item
-                android:id="@+id/nav_congno"
+                android:id="@+id/nav_dept"
                 android:icon="@drawable/ic_attach_money"
                 android:title="@string/cong_no" />
         </menu>
@@ -37,19 +37,19 @@
     <item android:title="@string/thong_tin">
         <menu>
             <item
-                android:id="@+id/nav_chuandaura"
+                android:id="@+id/nav_outcome_standard"
                 android:icon="@drawable/ic_done"
                 android:title="@string/chuan_dau_ra" />
             <item
-                android:id="@+id/nav_tiethoc"
+                android:id="@+id/nav_lesson"
                 android:icon="@drawable/ic_watch"
                 android:title="@string/quy_dinh_phan_tiet_hoc" />
             <item
-                android:id="@+id/nav_vitriphonghoc"
+                android:id="@+id/nav_location"
                 android:icon="@drawable/ic_place"
                 android:title="@string/vi_tri" />
             <item
-                android:id="@+id/nav_donghocphi"
+                android:id="@+id/nav_tuition"
                 android:icon="@drawable/ic_monetization"
                 android:title="@string/dong_hoc_phi" />
         </menu>
@@ -58,11 +58,11 @@
     <item android:title="@string/chuc_nang_khac">
         <menu>
             <item
-                android:id="@+id/nav_caidat"
+                android:id="@+id/nav_setting"
                 android:icon="@drawable/ic_setting"
                 android:title="@string/cai_dat" />
             <item
-                android:id="@+id/nav_gioithieu"
+                android:id="@+id/nav_about"
                 android:icon="@drawable/ic_about"
                 android:title="@string/gioi_thieu" />
         </menu>
