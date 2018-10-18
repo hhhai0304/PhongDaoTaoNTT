@@ -19,11 +19,21 @@ import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.crashlytics.android.Crashlytics;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import butterknife.BindView;
 import vn.name.hohoanghai.bases.BaseActivity;
+import vn.name.hohoanghai.pdtntt.BuildConfig;
 import vn.name.hohoanghai.pdtntt.R;
 import vn.name.hohoanghai.utils.DownloadUtils;
+import vn.name.hohoanghai.utils.ImageUtils;
 import vn.name.hohoanghai.utils.Settings;
 import vn.name.hohoanghai.utils.WebViewUtils;
 
@@ -39,6 +49,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     WebView webView;
     @BindView(R.id.swipe_container)
     SwipeRefreshLayout swipeContainer;
+    @BindView(R.id.adView)
+    AdView adView;
 
     private String studentId;
     private String studentHash;
@@ -49,14 +61,26 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
     protected void initData() {
+        setupAd();
+
         studentId = Settings.getStudentId();
         studentHash = Settings.getStudentHash();
+
+        if (!BuildConfig.DEBUG) {
+            Crashlytics.setUserIdentifier(studentId);
+        }
 
         setupDrawer();
         setupWebView();
 
         swipeContainer.setRefreshing(true);
         webView.loadUrl(Settings.URL_HOME);
+    }
+
+    private void setupAd() {
+        FirebaseAnalytics.getInstance(this);
+        MobileAds.initialize(this, Settings.ADMOB_ID);
+        adView.loadAd(new AdRequest.Builder().build());
     }
 
     private void setupWebView() {
@@ -105,6 +129,14 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         navView.setNavigationItemSelectedListener(this);
+
+        View headerView = navView.getHeaderView(0);
+        ImageView imgAvatar = headerView.findViewById(R.id.img_avatar);
+        TextView tvStudentId = headerView.findViewById(R.id.tv_student_id);
+        TextView tvMoreInfo = headerView.findViewById(R.id.tv_more_info);
+
+        ImageUtils.loadAvatar(this, imgAvatar, Settings.URL_AVATAR + studentId);
+        tvStudentId.setText(studentId);
     }
 
     @Override
@@ -144,19 +176,19 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             case R.id.nav_dept:
                 url = Settings.URL_DEBT + studentHash;
                 break;
-            case R.id.nav_outcome_standard:
-                url = Settings.URL_OUTCOME_STANDARD;
-                break;
-            case R.id.nav_lesson:
-                break;
-            case R.id.nav_location:
-                break;
-            case R.id.nav_tuition:
-                break;
-            case R.id.nav_setting:
-                break;
-            case R.id.nav_about:
-                break;
+//            case R.id.nav_outcome_standard:
+//                url = Settings.URL_OUTCOME_STANDARD;
+//                break;
+//            case R.id.nav_lesson:
+//                break;
+//            case R.id.nav_location:
+//                break;
+//            case R.id.nav_tuition:
+//                break;
+//            case R.id.nav_setting:
+//                break;
+//            case R.id.nav_about:
+//                break;
         }
 
         if (!TextUtils.isEmpty(url)) {

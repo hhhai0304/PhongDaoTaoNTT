@@ -3,8 +3,11 @@ package vn.name.hohoanghai.utils;
 import android.content.Context;
 
 import vn.name.hohoanghai.pdtntt.App;
+import vn.name.hohoanghai.pdtntt.BuildConfig;
 
 public class Settings {
+    public static final String ADMOB_ID = "ca-app-pub-9204613093493847~6172734415";
+
     private static final String KEY_STUDENT_ID = "key_student_id";
     private static final String KEY_STUDENT_HASH = "key_student_hash";
     private static final String KEY_HOME_PAGE = "key_home_page";
@@ -21,7 +24,7 @@ public class Settings {
     public static final String URL_ATTENDANCE = URL_BASE + "/ThongTinDiemDanh.aspx?k=";
     public static final String URL_DEBT = URL_BASE + "/CongNoSinhVien.aspx?k=";
     public static final String URL_OUTCOME_STANDARD = URL_BASE + "/News.aspx?MenuID=351";
-    public static final String URL_AVATAR = URL_BASE + "/GetImage.aspx?k=";
+    public static final String URL_AVATAR = URL_BASE + "/GetImage.aspx?MSSV=";
 
     private static Context getContext() {
         return App.getInstance().getApplicationContext();

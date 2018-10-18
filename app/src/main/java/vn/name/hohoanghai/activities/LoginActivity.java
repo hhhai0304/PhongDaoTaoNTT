@@ -1,5 +1,6 @@
 package vn.name.hohoanghai.activities;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -157,10 +158,11 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void showDialog() {
-//        new MaterialDialog(this)
-//                .title(R.string.login_dialog_title, null)
-//                .message(R.string.login_dialog_message, null)
-//                .positiveButton(android.R.string.ok, null, null)
-//                .show();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.login_dialog_title)
+                .setMessage(R.string.login_dialog_message)
+                .setPositiveButton(android.R.string.ok, null)
+                .setCancelable(false)
+                .show();
     }
 }
