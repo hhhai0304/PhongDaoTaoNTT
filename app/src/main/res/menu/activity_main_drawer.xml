@@ -34,26 +34,26 @@
         </menu>
     </item>
 
-    <!--<item android:title="@string/thong_tin">-->
-        <!--<menu>-->
-            <!--<item-->
-                <!--android:id="@+id/nav_outcome_standard"-->
-                <!--android:icon="@drawable/ic_done"-->
-                <!--android:title="@string/chuan_dau_ra" />-->
-            <!--<item-->
-                <!--android:id="@+id/nav_lesson"-->
-                <!--android:icon="@drawable/ic_watch"-->
-                <!--android:title="@string/quy_dinh_phan_tiet_hoc" />-->
-            <!--<item-->
-                <!--android:id="@+id/nav_location"-->
-                <!--android:icon="@drawable/ic_place"-->
-                <!--android:title="@string/vi_tri" />-->
-            <!--<item-->
-                <!--android:id="@+id/nav_tuition"-->
-                <!--android:icon="@drawable/ic_monetization"-->
-                <!--android:title="@string/dong_hoc_phi" />-->
-        <!--</menu>-->
-    <!--</item>-->
+    <item android:title="@string/thong_tin">
+        <menu>
+            <item
+                android:id="@+id/nav_outcome_standard"
+                android:icon="@drawable/ic_done"
+                android:title="@string/chuan_dau_ra" />
+            <item
+                android:id="@+id/nav_lesson"
+                android:icon="@drawable/ic_watch"
+                android:title="@string/quy_dinh_phan_tiet_hoc" />
+            <item
+                android:id="@+id/nav_location"
+                android:icon="@drawable/ic_place"
+                android:title="@string/vi_tri" />
+            <item
+                android:id="@+id/nav_tuition"
+                android:icon="@drawable/ic_monetization"
+                android:title="@string/dong_hoc_phi" />
+        </menu>
+    </item>
 
     <!--<item android:title="@string/chuc_nang_khac">-->
         <!--<menu>-->

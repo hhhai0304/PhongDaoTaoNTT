@@ -11,4 +11,8 @@ public final class ImageUtils {
     public static void loadAvatar(Context context, ImageView imgView, String url) {
         Glide.with(context).load(url).apply(RequestOptions.circleCropTransform()).into(imgView);
     }
+
+    public static void loadImage(Context context, ImageView imgView, String url) {
+        Glide.with(context).load(url).into(imgView);
+    }
 }

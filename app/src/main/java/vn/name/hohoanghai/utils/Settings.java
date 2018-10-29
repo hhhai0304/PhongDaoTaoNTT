@@ -24,7 +24,10 @@ public class Settings {
     public static final String URL_ATTENDANCE = URL_BASE + "/ThongTinDiemDanh.aspx?k=";
     public static final String URL_DEBT = URL_BASE + "/CongNoSinhVien.aspx?k=";
     public static final String URL_OUTCOME_STANDARD = URL_BASE + "/News.aspx?MenuID=351";
+    public static final String URL_LOCATION = URL_BASE + "/NewsDetail.aspx?NewsID=580";
+    public static final String URL_TUITION = URL_BASE + "/NewsDetail.aspx?NewsID=474";
     public static final String URL_AVATAR = URL_BASE + "/GetImage.aspx?MSSV=";
+    public static final String URL_LESSION = "http://h3solution.com/phongdaotaontt/quydinhphantiethoc.png";
 
     private static Context getContext() {
         return App.getInstance().getApplicationContext();

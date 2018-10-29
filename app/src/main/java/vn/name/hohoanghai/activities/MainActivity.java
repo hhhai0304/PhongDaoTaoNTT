@@ -7,6 +7,8 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -30,6 +32,7 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 
 import butterknife.BindView;
 import vn.name.hohoanghai.bases.BaseActivity;
+import vn.name.hohoanghai.fragments.ImageFragment;
 import vn.name.hohoanghai.pdtntt.BuildConfig;
 import vn.name.hohoanghai.pdtntt.R;
 import vn.name.hohoanghai.utils.DownloadUtils;
@@ -135,6 +138,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         TextView tvStudentId = headerView.findViewById(R.id.tv_student_id);
         TextView tvMoreInfo = headerView.findViewById(R.id.tv_more_info);
 
+        tvMoreInfo.setOnClickListener(view -> {
+            Settings.clearSession();
+            appear(LoginActivity.class);
+        });
+
         ImageUtils.loadAvatar(this, imgAvatar, Settings.URL_AVATAR + studentId);
         tvStudentId.setText(studentId);
     }
@@ -153,6 +161,12 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         String url = null;
+
+        for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+            if (fragment != null) {
+                getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+            }
+        }
 
         switch (id) {
             case R.id.nav_home:
@@ -176,15 +190,20 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             case R.id.nav_dept:
                 url = Settings.URL_DEBT + studentHash;
                 break;
-//            case R.id.nav_outcome_standard:
-//                url = Settings.URL_OUTCOME_STANDARD;
-//                break;
-//            case R.id.nav_lesson:
-//                break;
-//            case R.id.nav_location:
-//                break;
-//            case R.id.nav_tuition:
-//                break;
+            case R.id.nav_outcome_standard:
+                url = Settings.URL_OUTCOME_STANDARD;
+                break;
+            case R.id.nav_lesson:
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, new ImageFragment());
+                fragmentTransaction.commit();
+                break;
+            case R.id.nav_location:
+                url = Settings.URL_LOCATION;
+                break;
+            case R.id.nav_tuition:
+                url = Settings.URL_TUITION;
+                break;
 //            case R.id.nav_setting:
 //                break;
 //            case R.id.nav_about:
