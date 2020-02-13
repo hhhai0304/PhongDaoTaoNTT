@@ -5,7 +5,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -20,6 +19,8 @@ import android.webkit.WebViewClient;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import androidx.core.content.ContextCompat;
 
 import java.util.Objects;
 
@@ -67,6 +68,7 @@ public class LoginActivity extends BaseActivity {
                     webView.loadUrl("javascript:(function(){document.getElementById('txtSecurityCodeValue1').value='74b87337454200d4d33f80c4663dc5e5';})()");
                     webView.loadUrl("javascript:(function(){document.getElementById('txtSercurityCode1').value='aaaa';})()");
                     webView.loadUrl("javascript:(function(){document.getElementById('Button1').click();})()");
+                    webView.loadUrl("javascript:(function(){document.querySelector('#TblDanhSachSinhVien > tbody > tr:nth-child(2) > td:nth-child(5) > a').click();})()");
                 }
             }
 
@@ -110,8 +112,9 @@ public class LoginActivity extends BaseActivity {
                 if (length == 10) {
                     studentId = editable.toString();
                     webView.loadUrl(Settings.URL_LOGIN);
+                    Toast.makeText(LoginActivity.this, "Đang tiến hành đăng nhập, vui lòng đợi...", Toast.LENGTH_LONG).show();
 
-                    doAnim();
+//                    doAnim();
                 } else if (length > 10) {
                     Toast.makeText(LoginActivity.this, incorrectStudentId, Toast.LENGTH_LONG).show();
                     edtStudentId.setText("");

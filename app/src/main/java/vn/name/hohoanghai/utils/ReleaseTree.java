@@ -1,6 +1,6 @@
 package vn.name.hohoanghai.utils;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
 
 import com.crashlytics.android.Crashlytics;
